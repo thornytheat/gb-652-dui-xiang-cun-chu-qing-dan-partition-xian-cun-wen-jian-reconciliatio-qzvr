@@ -10,10 +10,24 @@
 - M4 分区判定：`/api/partitions`
 - M5 差异对账：`/api/reconcile`
 - M6 批次导出：`/api/export/differences.csv`
+- M7 归档恢复对账：`/api/restore/reconcile`（`GET` 只读回读，`POST` 提交或续接）
 
         ## 核心规则
 
         路径规范化后按 key、size 与摘要逐项比对，目录标记、空分区和缺失对象不得混为一类。
+
+        ## 归档恢复对账
+
+        归档对象需恢复后核验。M7 读取实际清单与对象登记，以本地存储服务替身复现受理、查询与回执丢失：
+
+        - 恢复申请按 `(key, version_id)` 幂等，重试复用原 `request_id`，不重复计费。
+        - 受理后中断可续接：重跑先查询存储侧已有受理记录，不重复申请。
+        - 到期仍无法确认转“待裁决”，既不冒充缺失也不冒充核验成功。
+        - 迟到回执按 `request_id` 归回原申请，不按当前最新版本改挂。
+        - 旧对象版本的恢复结果不覆盖新版本；恢复完成后再比大小与摘要。
+        - 接口回读申请、费用次数与分区核验结果；不改路径规则，不做补数领取。
+
+        样例：`sample_data/restore_manifest.csv` 与 `sample_data/restore_objects.jsonl`。
 
         ## 启动
 

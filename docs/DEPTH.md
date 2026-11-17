@@ -14,6 +14,7 @@
 | M4 分区判定 | 运行样例并复核证据 | `/api/partitions` / `/partitions` | `app/modules/m4_partitions/core.py` `app/modules/m4_partitions/service.py` | `tests/test_m4_partitions.py` |
 | M5 差异对账 | 运行样例并复核证据 | `/api/reconcile` / `/reconcile` | `app/modules/m5_reconcile/core.py` `app/modules/m5_reconcile/service.py` | `tests/test_m5_reconcile.py` |
 | M6 批次导出 | 运行样例并复核证据 | `/api/export/differences.csv` / `/runs` | `app/modules/m6_runs/core.py` `app/modules/m6_runs/service.py` | `tests/test_m6_runs.py` |
+| M7 归档恢复对账 | 提交/续接恢复申请并回读证据 | `/api/restore/reconcile` / `/restore` | `app/modules/m7_restore/core.py` `app/modules/m7_restore/service.py` `app/modules/m7_restore/storage_stub.py` | `tests/test_m7_restore.py` `tests/test_m7_restore_api.py` |
 
         ## 陷阱登记
 
@@ -29,6 +30,12 @@
 | TRAP-21 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m2_paths/core.py` | `tests/test_m2_paths.py::test_trap_2` |
 | TRAP-22 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m3_objects/core.py` | `tests/test_m3_objects.py::test_trap_2` |
 | TRAP-23 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m4_partitions/core.py` | `tests/test_m4_partitions.py::test_trap_2` |
+| TRAP-27 | 回执丢失后重发重复计费 | 直接重提恢复申请 | 幂等键复用原申请与 `request_id` | `app/modules/m7_restore/service.py` | `tests/test_m7_restore.py::test_trap_1_lost_receipt_retry_does_not_double_bill` |
+| TRAP-28 | 到期无法确认被冒充缺失或成功 | 按超时判缺失/成功 | 转 `PENDING_ADJUDICATION` 待裁决 | `app/modules/m7_restore/service.py` | `tests/test_m7_restore.py::test_trap_2_unconfirmed_past_deadline_is_adjudicated` |
+| TRAP-29 | 迟到回执挂到新版本 | 按 key 取当前版本归属 | 按原 `request_id` 归属并标记迟到 | `app/modules/m7_restore/service.py` | `tests/test_m7_restore.py::test_trap_3_late_receipt_keeps_original_owner` |
+| TRAP-30 | 旧版本恢复结果覆盖新版本 | 直接采用回执结果 | 版本不一致记 `STALE_VERSION` | `app/modules/m7_restore/service.py` | `tests/test_m7_restore.py::test_trap_4_old_version_result_does_not_override_new` |
+| TRAP-31 | 未完成就比摘要 | 受理即核验 | 恢复完成后再比大小、再比摘要 | `app/modules/m7_restore/core.py` | `tests/test_m7_restore.py::test_trap_5_compare_size_before_digest_after_restore` |
+| TRAP-32 | 受理后中断重复申请 | 重跑从头发起 | 查询存储侧受理记录续接 | `app/modules/m7_restore/storage_stub.py` | `tests/test_m7_restore.py::test_trap_6_interrupt_after_accept_does_not_resubmit` |
 
         ## 对账规则
 

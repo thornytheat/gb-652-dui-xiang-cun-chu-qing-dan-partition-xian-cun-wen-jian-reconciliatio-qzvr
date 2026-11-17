@@ -1,0 +1,15 @@
+key,size,digest,version_id
+dt=2026-11-15/hour=00/a.parquet,20,sha-a2,v2
+dt=2026-11-15/hour=00/a.parquet,10,sha-a1,v1
+dt=2026-11-15/hour=01/b.parquet,30,sha-b1,v1
+dt=2026-11-15/hour=01/b2.parquet,35,sha-b2,v1
+dt=2026-11-15/hour=02/c.parquet,20,sha-c2,v2
+dt=2026-11-15/hour=02/d.parquet,40,sha-d1,v1
+dt=2026-11-15/hour=02/d2.parquet,40,sha-d2,v1
+dt=2026-11-15/hour=03/e.parquet,50,sha-e1,v1
+dt=2026-11-15/hour=03/f.parquet,60,sha-f1,v1
+dt=2026-11-15/hour=03/g.parquet,70,sha-g1,v1
+dt=2026-11-15/hour=04/i.parquet,100,sha-i2,v2
+dt=2026-11-15/hour=04/j.parquet,90,sha-j1,v1
+dt=2026-11-15/hour=05/h.parquet,80,sha-h1,v1
+dt=2026-11-15/hour=05/h.parquet,80,sha-h1,v1

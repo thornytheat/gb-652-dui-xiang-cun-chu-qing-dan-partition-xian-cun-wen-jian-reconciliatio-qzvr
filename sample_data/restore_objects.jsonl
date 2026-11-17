@@ -1,0 +1,13 @@
+{"key":"dt=2026-11-15/hour=00/a.parquet","version_id":"v1","size":10,"digest":"sha-a1","storage_class":"ARCHIVE","is_current":false}
+{"key":"dt=2026-11-15/hour=00/a.parquet","version_id":"v2","size":20,"digest":"sha-a2","storage_class":"DEEP_ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=01/b.parquet","version_id":"v1","size":30,"digest":"sha-b1","storage_class":"ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=01/b2.parquet","version_id":"v1","size":35,"digest":"sha-b2","storage_class":"ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=02/c.parquet","version_id":"v2","size":20,"digest":"sha-c2","storage_class":"COLD_ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=02/d.parquet","version_id":"v1","size":40,"digest":"sha-d1","storage_class":"STANDARD","is_current":true}
+{"key":"dt=2026-11-15/hour=02/d2.parquet","version_id":"v1","size":40,"digest":"sha-d2-other","storage_class":"STANDARD","is_current":true}
+{"key":"dt=2026-11-15/hour=03/e.parquet","version_id":"v1","size":50,"digest":"sha-e1","storage_class":"ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=03/f.parquet","version_id":"v1","size":60,"digest":"sha-f1","storage_class":"DEEP_ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=04/i.parquet","version_id":"v1","size":110,"digest":"sha-i1","storage_class":"ARCHIVE","is_current":false}
+{"key":"dt=2026-11-15/hour=04/i.parquet","version_id":"v2","size":100,"digest":"sha-i2","storage_class":"ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=04/j.parquet","version_id":"v1","size":90,"digest":"sha-j1","storage_class":"ARCHIVE","is_current":true}
+{"key":"dt=2026-11-15/hour=05/h.parquet","version_id":"v1","size":80,"digest":"sha-h1","storage_class":"ARCHIVE","is_current":true}
